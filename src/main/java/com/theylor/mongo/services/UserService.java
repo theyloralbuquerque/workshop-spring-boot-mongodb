@@ -32,6 +32,11 @@ public class UserService {
 		return userRepository.insert(obj);
 	}
 	
+	public void delete(String id) {
+		findById(id);
+		userRepository.deleteById(id);
+	}
+	
 	// Método que recebe um UserDTO e retorna os dados desse UserDTO em um novo User como retorno. 
 	public User fromDTO(UserDTO objDto) {
 		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
