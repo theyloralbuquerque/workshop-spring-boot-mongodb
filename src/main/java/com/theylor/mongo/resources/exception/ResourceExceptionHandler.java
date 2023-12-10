@@ -14,7 +14,7 @@ public class ResourceExceptionHandler {
 
 	@ExceptionHandler(ObjectNotFoundException.class) // Indica que esse método será invocado quando houver uma ObjectNotFoundException.
 	public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
-		HttpStatus status = HttpStatus.NOT_FOUND;
+		HttpStatus status = HttpStatus.NOT_FOUND; // Código 404.
 		StandardError err = new StandardError(System.currentTimeMillis(), status.value(), "Não encontrado", 
 				e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);

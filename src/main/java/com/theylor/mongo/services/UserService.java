@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.theylor.mongo.domain.User;
+import com.theylor.mongo.dto.UserDTO;
 import com.theylor.mongo.repository.UserRepository;
 import com.theylor.mongo.services.exception.ObjectNotFoundException;
 
@@ -25,6 +26,15 @@ public class UserService {
 		
 		// retorna o obj ou lança uma exceção que é uma ObjectNotFoundException.
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado")); 
+	}
+	
+	public User insert(User obj) {
+		return userRepository.insert(obj);
+	}
+	
+	// Método que recebe um UserDTO e retorna os dados desse UserDTO em um novo User como retorno. 
+	public User fromDTO(UserDTO objDto) {
+		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
 	}
 }
 
